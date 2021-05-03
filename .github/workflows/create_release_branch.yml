@@ -29,7 +29,8 @@ jobs:
         run: git push origin release/v${{ github.event.inputs.versionName }}
       
       - name: Create pull request 
-        uses: peter-evans/create-pull-request@v3.8.2
+        uses: vsoch/pull-request-action@master
         with:
-          branch: release/v${{github.event.inputs.versionName}}
-          base: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST_FROM_BRANCH: "release/v${{github.event.inputs.versionName}}"
+          PULL_REQUEST_BRANCH: "main"
