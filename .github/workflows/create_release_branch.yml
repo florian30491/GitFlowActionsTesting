@@ -1,0 +1,39 @@
+name: Create Release Branch
+on:
+  workflow_dispatch:
+    inputs:
+      versionName:
+        description: 'Name of version  (ie 5.5.0)'
+        required: true
+      versionCode:
+        description: 'Version number (50500)'
+        required: true
+        
+jobs:
+  createrelease:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Create release branch
+        run: git checkout -b release/v${{github.event.inputs.versionName}}
+      - name: Initialize mandatory git config
+        run: |
+         git config user.name "GitHub Actions"
+         git config user.email noreply@github.ev.minebea.local
+         
+      - name: Push new branch
+        run: git push origin release/v${{ github.event.inputs.versionName }}
+      
+      - name: Create pull request into main
+        uses: thomaseizinger/create-pull-request@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          head: release/v${{ github.event.inputs.versionName }}
+          base: main
+          title: v${{ github.event.inputs.versionName }} into main
+          reviewers: ${{ github.event.issue.user.login }}
+          body: |
+           Hi!
+           This PR was created in response workflow running.
