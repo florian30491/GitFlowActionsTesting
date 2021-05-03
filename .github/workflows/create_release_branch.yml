@@ -1,3 +1,4 @@
+
 name: Create Release Branch
 on:
   workflow_dispatch:
@@ -11,7 +12,8 @@ on:
         
 jobs:
   createrelease:
-    runs-on: ubuntu-latest
+    name: Create Release
+    runs-on: [self-hosted, Linux]
     
     steps:
       - name: Check out code
@@ -26,14 +28,8 @@ jobs:
       - name: Push new branch
         run: git push origin release/v${{ github.event.inputs.versionName }}
       
-      - name: Create pull request into main
-        uses: thomaseizinger/create-pull-request@master
+      - name: Create pull request 
+        uses: peter-evans/create-pull-request@v3.8.2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          head: release/v${{ github.event.inputs.versionName }}
+          branch: release/v${{github.event.inputs.versionName}}
           base: main
-          title: v${{ github.event.inputs.versionName }} into main
-          reviewers: ${{ github.event.issue.user.login }}
-          body: |
-           Hi!
-           This PR was created in response workflow running.
