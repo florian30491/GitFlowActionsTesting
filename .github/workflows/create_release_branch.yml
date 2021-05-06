@@ -33,5 +33,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: "release/v${{github.event.inputs.versionName}}"
-          base: "develop"
+          base: "main"
           draft: true
