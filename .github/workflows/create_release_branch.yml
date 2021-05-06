@@ -18,20 +18,20 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-      - name: Create release branch
-        run: git checkout -b release/v${{github.event.inputs.versionName}}
-      - name: Initialize mandatory git config
-        run: |
-         git config user.name "GitHub Actions"
-         git config user.email noreply@github.ev.minebea.local
+#      - name: Create release branch
+ #       run: git checkout -b release/v${{github.event.inputs.versionName}}
+  #    - name: Initialize mandatory git config
+   #     run: |
+    #     git config user.name "GitHub Actions"
+     #    git config user.email noreply@github.ev.minebea.local
          
-      - name: Push new branch
-        run: git push origin release/v${{ github.event.inputs.versionName }}
+      #- name: Push new branch
+       # run: git push origin release/v${{ github.event.inputs.versionName }}
       
       - name: Create pull request 
         uses: peter-evans/create-pull-request@v3.8.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: "release/v${{github.event.inputs.versionName}}"
-          branch: "main"
+          main: "release/v${{github.event.inputs.versionName}}"
+          base: "main"
           draft: true
