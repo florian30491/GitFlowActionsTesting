@@ -34,3 +34,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: "release/v${{github.event.inputs.versionName}}"
           base: "main"
+          draft: true
