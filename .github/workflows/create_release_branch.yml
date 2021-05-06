@@ -32,6 +32,6 @@ jobs:
         uses: peter-evans/create-pull-request@v3.8.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "release/v${{github.event.inputs.versionName}}"
-          base: "main"
+          base: "release/v${{github.event.inputs.versionName}}"
+          branch: "main"
           draft: true
