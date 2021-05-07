@@ -33,6 +33,6 @@ jobs:
       - name: Create pull request 
         uses: peter-evans/create-pull-request@v3.8.2
         with:
-          branch: release/v${{github.event.inputs.versionName}}
-          base: main
+          base: release/v${{github.event.inputs.versionName}}
+          branch: main
           token: ${{ secrets.GITHUB_TOKEN }}
