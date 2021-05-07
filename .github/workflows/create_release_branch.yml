@@ -31,6 +31,6 @@ jobs:
       - name: Create pull request 
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: release/v${{github.event.inputs.versionName}}
-          destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release/v${{github.event.inputs.versionName}}
+          base: "main"
+          token: ${{ secrets.GITHUB_TOKEN }}
