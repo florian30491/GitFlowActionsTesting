@@ -16,9 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: main
       - name: Reset main branch
         run: |
           git fetch origin develop:develop
@@ -26,4 +23,5 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
+          base: main
           branch: release/v${{github.event.inputs.versionName}}
