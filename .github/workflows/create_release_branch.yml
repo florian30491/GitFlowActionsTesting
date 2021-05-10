@@ -17,8 +17,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: main
       - name: Reset develop branch
         run: |
           git fetch origin develop:develop
