@@ -26,5 +26,4 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.9.2
         with:
-          base: main
           branch: release/v${{github.event.inputs.versionName}}
