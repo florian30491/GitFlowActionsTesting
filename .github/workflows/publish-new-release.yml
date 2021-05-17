@@ -35,6 +35,7 @@ jobs:
           name: ${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge master into dev branch
         uses: thomaseizinger/create-pull-request@1.0.0
