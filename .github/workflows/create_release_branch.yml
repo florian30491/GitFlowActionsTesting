@@ -17,12 +17,14 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: main
       - name: Reset develop branch
         run: |
           git fetch origin develop:develop
           git reset --hard develop
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v3.9.2
         with:
           base: main
           branch: release/v${{github.event.inputs.versionName}}
