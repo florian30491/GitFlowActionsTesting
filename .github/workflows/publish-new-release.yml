@@ -26,7 +26,7 @@ jobs:
           VERSION=${BRANCH_NAME#hotfix/}
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
       - name: Create Release
-        uses: thomaseizinger/create-release@1.0.0
+        uses: florian30491/create-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -41,8 +41,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          head: master
-          base: dev
+          head: main
+          base: develop
           title: Merge master into dev branch
           body: |
             This PR merges the master branch back into dev.
